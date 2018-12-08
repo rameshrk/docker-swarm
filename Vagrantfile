@@ -28,7 +28,6 @@ Vagrant.configure(2) do |config|
       node.vm.hostname = machine[:hostname]
       node.vm.network "private_network", ip: machine[:ip]
       if machine[:hostname] == "manager"
-       #node.vm.provision "docker", images: ["monicagangwar/docker-swarm-vagrant"]
        node.vm.provision "docker", images: ["gameshark/docker-swarm"]
        # node.vm.provision "docker" do |docker|
        #  docker.build_image "/vagrant",
