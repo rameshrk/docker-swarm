@@ -29,13 +29,14 @@ Vagrant.configure(2) do |config|
       node.vm.network "private_network", ip: machine[:ip]
       if machine[:hostname] == "manager"
        #node.vm.provision "docker", images: ["monicagangwar/docker-swarm-vagrant"]
-        node.vm.provision "docker" do |docker|
-    	  docker.build_image "/vagrant",
-      	  args: "-t example/hello_web"
-        docker.run "hello_web",
-          image: "example/hello_web:latest",
-          args: "-p 80:80"
-        end
+       node.vm.provision "docker", images: ["gameshark/docker-swarm"]
+       # node.vm.provision "docker" do |docker|
+       #  docker.build_image "/vagrant",
+       #  args: "-t example/hello_web"
+       # docker.run "hello_web",
+       #  image: "example/hello_web:latest",
+       #   args: "-p 80:80"
+       # end
 
 	node.vm.network "forwarded_port", guest: 8000, host: 8000
       elsif machine[:hostname] == "worker-1"
